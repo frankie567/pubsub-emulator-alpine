@@ -1,0 +1,11 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+script:
+- docker build -t frankie567/pubsub-emulator:alpine .
+- docker push frankie567/pubsub-emulator:alpine
